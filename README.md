@@ -53,6 +53,24 @@ If the range of dates crosses a weekend or a holiday, those days won't count tow
    // span.TotalMinutes = 120
 ```
 
+## Modifying Lunch Hours
+
+The `LunchTimeCalculator` provides access to its `LunchStart` and `LunchEnd` attributes, which can be modified as needed. Note that although 
+these are DateTime objects, only the `TimeOfDay` portion of the object will be evaluated.
+
+```
+	LunchTimeCalculator ltc = new LunchTimeCalculator();
+	ltc.LunchStart = DateTime.Parse("12:30");
+	ltc.LunchEnd = DateTime.Parse("13:00");
+
+    DateTime start = DateTime.Parse("2018-08-10 09:00");
+    DateTime end = DateTime.Parse("2018-08-10 14:30");
+    TimeSpan span = ltc.LunchHoursInSpan(start, end);
+
+    // span.TotalMinutes = 30
+```
+
+
 ## Adding Holidays
 
 National holidays and days off work can vary by region, so by default this module does not provide any holiday definitions. Provide your own by simply adding in
